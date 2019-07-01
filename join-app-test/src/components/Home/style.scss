@@ -1,0 +1,35 @@
+@import "../../style/variables";
+
+.home {
+    margin-top: 40px;
+    .home-search {
+        display: flex;
+        justify-content: center;
+        &__description-input {
+            width: 300px;
+            height: 40px;
+            border-radius: 2px;
+        }
+        &__from-input {
+            width: 100px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 2px;
+        }
+        &__to-input {
+            width: 100px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 2px;
+        }
+        &__img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        &__submit {
+            height: 40px;
+            margin-left: 10px;
+        }
+    }
+}
