@@ -21,3 +21,6 @@ join-app-test/.env.production.local
 join-app-test/npm-debug.log*
 join-app-test/yarn-debug.log*
 join-app-test/yarn-error.log*
+
+
+.DS_Store
