@@ -8,7 +8,7 @@ class HomeItem extends React.Component<HomeItemProps, {}> {
     render() {
         return (
         <div className="home-item">
-            <span>{this.props.itemData}</span>
+            <span>{this.props.itemData.address}</span>
         </div>
         );
     }

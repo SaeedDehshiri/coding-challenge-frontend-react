@@ -6,12 +6,13 @@ import dateLogo from '../../assets/date.png'; // Tell Webpack this JS file uses 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeItem from './components/HomeItem/HomeItem';
+import axios from 'axios';
 
 type HomeState = {
     description: string;
     from: any;
     to: any;
-    items: Array<any>;
+    items: [];
     loading: Boolean
 };
 
@@ -20,18 +21,24 @@ class Home extends React.Component<{}, HomeState> {
         description: "",
         from: "",
         to: "",
-        items: [null],
+        items: [],
         loading: true
     };
 
     componentDidMount() {
-        // axios call
-        /* set items */
-        this.setState({
-            items: ["salam", "salam","salam","salam","salam","salam","salam","salam",]
-        }, () => {
-            console.log(this.state.items)
-        });
+        axios.get("https://bikewise.org/api/v2/incidents?page=1&proximity_square=100")
+        .then(res => {
+            console.log(res.data.incidents);
+            this.setState({
+                loading: false,
+                items: res.data.incidents
+            })
+        })
+        .catch(err => {
+            this.setState({
+                loading: false
+            })
+        })
     }
     
     onChangeDescription = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -108,16 +115,19 @@ class Home extends React.Component<{}, HomeState> {
                     </div>
                 ):(
                     <div>
-                        
+                        {this.state.items.length === 0 ?
+                        (
+                            <div>No Result</div>
+                        )
+                        : this.state.items.map(item => (
+                            <HomeItem itemData={item} />
+                        )) 
+                        }
                     </div>
                 )
                 }
 
-                {
-                    this.state.items.map(item => (
-                        <HomeItem itemData={item} />
-                    ))
-                }
+                
             </div>
         );
     }
