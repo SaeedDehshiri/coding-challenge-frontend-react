@@ -5,19 +5,34 @@ import dateLogo from '../../assets/date.png'; // Tell Webpack this JS file uses 
  
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HomeItem from './components/HomeItem/HomeItem';
 
 type HomeState = {
     description: string;
     from: any;
     to: any;
+    items: Array<any>;
+    loading: Boolean
 };
 
 class Home extends React.Component<{}, HomeState> {
     state: HomeState = {
         description: "",
         from: "",
-        to: ""
+        to: "",
+        items: [null],
+        loading: true
     };
+
+    componentDidMount() {
+        // axios call
+        /* set items */
+        this.setState({
+            items: ["salam", "salam","salam","salam","salam","salam","salam","salam",]
+        }, () => {
+            console.log(this.state.items)
+        });
+    }
     
     onChangeDescription = (e: React.FormEvent<HTMLInputElement>): void => {
         this.setState({ description: e.currentTarget.value });
@@ -87,6 +102,22 @@ class Home extends React.Component<{}, HomeState> {
                         <input className="home-search__submit" type="submit" value="Find Cases" />
                     </form>
                 </div>
+                {this.state.loading ? (
+                    <div>
+
+                    </div>
+                ):(
+                    <div>
+                        
+                    </div>
+                )
+                }
+
+                {
+                    this.state.items.map(item => (
+                        <HomeItem itemData={item} />
+                    ))
+                }
             </div>
         );
     }
