@@ -114,14 +114,21 @@ class Home extends React.Component<{}, HomeState> {
 
                     </div>
                 ):(
-                    <div>
+                    <div className="home-items">
                         {this.state.items.length === 0 ?
                         (
                             <div>No Result</div>
                         )
-                        : this.state.items.map(item => (
-                            <HomeItem itemData={item} />
-                        )) 
+                        : 
+                        (<div className="home-items-top">
+                            <span className="home-items-top__total">total: {this.state.items.length}</span>
+                        {
+                            this.state.items.map(item => (
+                                <HomeItem itemData={item} />
+                            )) 
+                        }
+                        </div>)
+                        
                         }
                     </div>
                 )

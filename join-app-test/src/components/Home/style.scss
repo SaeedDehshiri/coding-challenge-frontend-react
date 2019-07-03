@@ -32,4 +32,11 @@
             margin-left: 10px;
         }
     }
+    .home-items {
+        .home-items-top {
+            &__total {
+                text-align: right
+            }
+        }
+    }
 }
